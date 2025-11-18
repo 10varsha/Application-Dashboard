@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------------
+   GLOBAL LIGHT THEME VARIABLES
+--------------------------------- */
+:root {
+  --bg-main: #ffffff;
+  --text-main: #111111;
+  --text-muted: #555555;
+
+  --card-bg: #f2f2f3;
+  --input-bg: #fafafa;
+  --border: #d3d3d3;
+
+  --tab: #e5e5e5;
+  --tab-active: #cfcfcf;
+
+  --toggle-bg: #e5e5e5;
+}
+
+/* -------------------------------
+   GLOBAL DARK THEME VARIABLES
+--------------------------------- */
+.dark {
+  --bg-main: #0b0b0d;          /* deep black */
+  --text-main: #e6e6e6;
+  --text-muted: #a1a1a1;
+
+  --card-bg: #161618;          /* card grey */
+  --input-bg: #1d1d20;         /* input grey */
+  --border: #2a2a2e;           /* subtle border */
+
+  --tab: #1c1c1f;
+  --tab-active: #2b2b2f;
+
+  --toggle-bg: #242428;
+}
+
+/* -------------------------------
+   RESET BROKEN VITE DEFAULTS
+--------------------------------- */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+/* Remove Vite template colors */
+:root {
+  background: var(--bg-main) !important;
+  color: var(--text-main) !important;
+}
+
+/* -------------------------------
+   TAILWIND-INTEGRATED GLOBAL THEME
+--------------------------------- */
+body {
+  @apply transition-colors duration-300;
+  background: var(--bg-main) !important;
+  color: var(--text-main) !important;
+}
+
+/* Links */
+a {
+  color: var(--text-main);
+  transition: 0.2s;
+}
+
+a:hover {
+  opacity: 0.75;
+}
+
+/* Buttons (override template defaults) */
+button {
+  background: var(--toggle-bg) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border) !important;
+}
+
+button:hover {
+  opacity: 0.85;
+}
