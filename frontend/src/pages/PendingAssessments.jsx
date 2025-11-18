@@ -12,7 +12,7 @@ export default function PendingAssessments() {
   useEffect(() => {
     const fetchPending = async () => {
       try {
-        const res = await axios.post("http://localhost:8000/pending", {
+        const res = await axios.post(`${API_BASE}/pending`, {
           filters: {},
         });
         const rows = res.data || [];
@@ -45,7 +45,7 @@ export default function PendingAssessments() {
 
   const applyFilters = async () => {
     try {
-      const res = await axios.post("http://localhost:8000/pending", {
+      const res = await axios.post(`${API_BASE}/pending`, {
         filters,
       });
       setData(res.data || []);
