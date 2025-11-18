@@ -1,11 +1,13 @@
 import os
 import datetime as _dt
+from pathlib import Path
 from typing import Tuple
 
 import pandas as pd
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from dotenv import load_dotenv
 
 try:
     import psycopg2
@@ -14,10 +16,10 @@ except ImportError as exc:
         "psycopg2 is required. Install with: pip install psycopg2-binary"
     ) from exc
 
-DATABASE_URL: str = os.environ.get(
-    "DATABASE_URL",
-    "postgres://4416df4d1c48f61debbf702422e0f6e33c01011be6a2e3e1130e30f51cd4ad71:sk_v2803n3IRUVLkhaymfqK3@db.prisma.io:5432/postgres?sslmode=require",
-)
+BASE_DIR = Path(__file__).resolve().parent
+load_dotenv(BASE_DIR / ".env")
+
+DATABASE_URL: str = os.environ["DATABASE_URL"]
 
 app = FastAPI()
 
@@ -132,4 +134,3 @@ def pending(req: FilterRequest):
     # Apply user filters
     result = apply_filters(pending_df, req.filters)
     return result.to_dict(orient="records")
-
