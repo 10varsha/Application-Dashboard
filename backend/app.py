@@ -18,26 +18,12 @@ except ImportError as exc:
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / ".env")
 
-DATABASE_URL = os.environ.get("DATABASE_URL")
-FRONTEND_URLS = os.environ.get("FRONTEND_URLS") or os.environ.get("FRONTEND_URL")
-
 if not DATABASE_URL:
     raise RuntimeError("DATABASE_URL is not set. Add it in your Render service settings.")
 
 app = FastAPI()
 
-allow_origins = {
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "https://assessments-dashboard-three.vercel.app/",
-}
-if FRONTEND_URLS:
-    for origin in FRONTEND_URLS.split(","):
-        origin = origin.strip()
-        if origin:
-            allow_origins.add(origin)
-if not allow_origins:
-    allow_origins = {"*"}
+allow_origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
