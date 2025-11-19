@@ -29,6 +29,7 @@ app = FastAPI()
 allow_origins = {
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://assessments-dashboard-three.vercel.app/",
 }
 if FRONTEND_URLS:
     for origin in FRONTEND_URLS.split(","):
