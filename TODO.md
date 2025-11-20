@@ -1,2 +1,0 @@
-- [x] Add DATABASE_URL import from environment variables in backend/app.py
-- [x] Add error handling if DATABASE_URL is not set
